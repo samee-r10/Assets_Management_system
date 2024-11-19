@@ -57,7 +57,7 @@
 ![Assets Records](https://github.com/user-attachments/assets/6a31ccfa-7b9a-4554-9d2a-4cc6d8813283)
 
 * We can create new user and also we can view, delete and reset the password of existing user.
-![View User ](https://github.com/user-attachments/assets/9f402441-9e5e-4ee9-aea0-e005f1320eba)
+![View User ](https://github.com/user-attachments/assets/08afa4a6-dc02-4cb6-a94b-2fbea29d76bd)
 
 * Add item page looks like this
 ![Add item ](https://github.com/user-attachments/assets/fd43379a-6294-4323-b812-4ed5b7084c08)
