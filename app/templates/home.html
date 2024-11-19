@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">Assets</h1>
+    <p>Welcome, <strong>{{ current_user.username }}</strong>!</p>
+
+    <div class="mb-4">
+        {% if current_user.username == 'Admin' %}
+        <a href="{{ url_for('main.add_user') }}" class="btn btn-secondary me-2">Add User</a>
+        <a href="{{ url_for('main.view_users') }}" class="btn btn-info">View Users</a>
+        <a href="{{ url_for('main.view_logs') }}" class="btn btn-secondary me-2">View Logs</a>
+        <a href="{{ url_for('main.add_item') }}" class="btn btn-primary">Add New Asset</a>
+        <a href="{{ url_for('main.export_csv') }}" class="btn btn-success">Export as CSV</a>
+        <a href="{{ url_for('main.import_csv') }}" class="btn btn-success">Import CSV</a>
+        <a href="{{ url_for('main.device_count') }}" class="btn btn-info">Device Count</a>
+        
+        <!-- Delete All Button for Admin -->
+        <form action="{{ url_for('main.delete_all_items') }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete all items?');">
+            <button type="submit" class="btn btn-danger">Delete All</button>
+        </form>
+        {% else %}
+        <a href="{{ url_for('main.add_item') }}" class="btn btn-primary">Add New Asset</a>
+        <a href="{{ url_for('main.export_csv') }}" class="btn btn-success">Export as CSV</a>
+        <a href="{{ url_for('main.view_logs') }}" class="btn btn-secondary me-2">View Logs</a>
+        <a href="{{ url_for('main.device_count') }}" class="btn btn-info">Device Count</a>
+        {% endif %}
+    </div>
+
+        <!-- Modal for Device Count -->
+        <div class="modal fade" id="deviceCountModal" tabindex="-1" aria-labelledby="deviceCountModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deviceCountModalLabel">Device Count Summary</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Total Devices: {{ total_count }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Count by Brand</h6>
+                                <ul>
+                                    {% for brand, count in device_counts.items() %}
+                                    <li>{{ brand }}: {{ count }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Count by Status</h6>
+                                <ul>
+                                    {% for status, count in sorted_status_counts.items() %}
+                                    <li>{{ status }}: {{ count }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Search and Filter Forms -->
+    <form method="GET" action="{{ url_for('main.home') }}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search_query" class="form-control" placeholder="Search..." value="{{ search_query }}">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <form method="GET" action="{{ url_for('main.home') }}" class="mb-4">
+        <div class="row">
+            <!-- Filter by Asset Type -->
+            <div class="col-md-3 mb-3">
+                <label for="asset_type">Filter by Asset Type</label>
+                <select name="asset_type" id="asset_type" class="form-control">
+                    <option value="">All</option>
+                    {% for asset_type, _ in asset_type_counts %}
+                    <option value="{{ asset_type }}" {% if asset_type_filter == asset_type %}selected{% endif %}>{{ asset_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Filter by Department -->
+            <div class="col-md-3 mb-3">
+                <label for="department">Filter by Department</label>
+                <select name="department" id="department" class="form-control">
+                    <option value="">All</option>
+                    {% for department, _ in department_counts %}
+                    <option value="{{ department }}" {% if department_filter == department %}selected{% endif %}>{{ department }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Filter by Country -->
+            <div class="col-md-3 mb-3">
+                <label for="country">Filter by Country</label>
+                <select name="country" id="country" class="form-control">
+                    <option value="">All</option>
+                    {% for country, _ in country_counts %}
+                    <option value="{{ country }}" {% if country_filter == country %}selected{% endif %}>{{ country }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Filter by Status -->
+            <div class="col-md-3 mb-3">
+                <label for="status">Filter by Status</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="">All</option>
+                    {% for status, _ in status_counts %}
+                    <option value="{{ status }}" {% if status_filter == status %}selected{% endif %}>{{ status }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Purchase Date Start -->
+            <div class="col-md-3 mb-3">
+                <label for="purchase_date_start">Purchase Date From</label>
+                <input type="date" name="purchase_date_start" id="purchase_date_start" class="form-control" value="{{ purchase_date_start }}">
+            </div>
+
+            <!-- Purchase Date End -->
+            <div class="col-md-3 mb-3">
+                <label for="purchase_date_end">Purchase Date To</label>
+                <input type="date" name="purchase_date_end" id="purchase_date_end" class="form-control" value="{{ purchase_date_end }}">
+            </div>
+
+            <!-- Warranty End Date Start -->
+            <div class="col-md-3 mb-3">
+                <label for="warranty_end_date_start">Warranty End Date From</label>
+                <input type="date" name="warranty_end_date_start" id="warranty_end_date_start" class="form-control" value="{{ warranty_end_date_start }}">
+            </div>
+
+            <!-- Warranty End Date End -->
+            <div class="col-md-3 mb-3">
+                <label for="warranty_end_date_end">Warranty End Date To</label>
+                <input type="date" name="warranty_end_date_end" id="warranty_end_date_end" class="form-control" value="{{ warranty_end_date_end }}">
+            </div>
+
+            <!-- Apply and Clear Buttons -->
+            <div class="col-md-12 mt-3">
+                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                <a href="{{ url_for('main.home') }}" class="btn btn-secondary">Clear Filters</a>
+            </div>
+        </div>
+    </form>
+
+    <!-- Inventory Table -->
+    <div class="table-responsive">
+        <table id="inventoryTable" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Asset Tag</th>
+                    <th>Asset Type</th>
+                    <th>Status</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>FA Code</th>
+                    <th>Serial Number</th>
+                    <th>Operating System</th>
+                    <th>Purchase Date</th>
+                    <th>Age</th>
+                    <th>Current Owner</th>
+                    <th>Previous Owner</th>
+                    <th>Warranty End Date</th>
+                    <th>Condition Notes</th>
+                    <th>Department</th>
+                    <th>Office</th>
+                    <th>Country</th>
+                    <th>Vendor Location</th>
+                    <th>Updated By</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.asset_tag }}</td>
+                    <td>{{ item.asset_type }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.brand }}</td>
+                    <td>{{ item.model }}</td>
+                    <td>{{ item.fa_code }}</td>
+                    <td>{{ item.serial_number }}</td>
+                    <td>{{ item.operating_system }}</td>
+                    <td>{{ item.purchase_date.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ item.age }}</td>
+                    <td>{{ item.current_owner }}</td>
+                    <td>{{ item.previous_owner }}</td>
+                    <td>{{ item.warranty_end_date.strftime('%Y-%m-%d') if item.warranty_end_date else 'N/A' }}</td>
+                    <td>{{ item.condition_notes }}</td>
+                    <td>{{ item.department }}</td>
+                    <td>{{ item.office }}</td>
+                    <td>{{ item.country }}</td>
+                    <td>{{ item.vendor_location }}</td>
+                    <td>{{ item.updated_by }}</td>
+                    <td>
+                        <a href="{{ url_for('main.edit_item', item_id=item.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        {% if current_user.username == 'Admin' %}
+                        <form action="{{ url_for('main.delete_item', item_id=item.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <div>
+            {% if items.has_prev %}
+            <a href="{{ url_for('main.home', page=items.prev_num) }}" class="btn btn-secondary">Previous</a>
+            {% endif %}
+            {% if items.has_next %}
+            <a href="{{ url_for('main.home', page=items.next_num) }}" class="btn btn-secondary">Next</a>
+            {% endif %}
+        </div>
+        <div>
+            <span>Page {{ items.page }} of {{ items.pages }}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

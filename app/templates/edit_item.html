@@ -1,0 +1,109 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
+</head>
+<body>
+    <div class="page-container">
+        <div class="content-container">
+            <h1 class="text-center">Edit Item</h1>
+            
+
+            <!-- Begin Form Section -->
+            <form method="POST" action="{{ url_for('main.edit_item', item_id=item.id) }}" class="edit-item-form">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.asset_tag.label }}
+                    {{ form.asset_tag(class_="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.asset_type.label }}
+                    <select name="asset_type" class="form-control">
+                        {% for value, label in form.asset_type.choices %}
+                            <option value="{{ value }}" {% if form.asset_type.data == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    {{ form.status.label }}
+                    {{ form.status(class_="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.brand.label }}
+                    {{ form.brand(class_="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.operating_system.label }}
+                    {{ form.operating_system(class_="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.department.label }}
+                    {{ form.department(class_="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.purchase_date.label(class="form-label") }}
+                    {{ form.purchase_date(class="form-control") }}
+                </div>
+        
+                <div class="form-group">
+                    {{ form.age.label(class="form-label") }}
+                    {{ form.age(class="form-control") }}
+                </div>
+        
+                <div class="form-group">
+                    {{ form.current_owner.label(class="form-label") }}
+                    {{ form.current_owner(class="form-control") }}
+                </div>
+        
+                <div class="form-group">
+                    {{ form.previous_owner.label(class="form-label") }}
+                    {{ form.previous_owner(class="form-control") }}
+                </div>
+        
+                <div class="form-group">
+                    {{ form.warranty_end_date.label(class="form-label") }}
+                    {{ form.warranty_end_date(class="form-control") }}
+                </div>
+        
+                <div class="form-group">
+                    {{ form.condition_notes.label(class="form-label") }}
+                    {{ form.condition_notes(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.office.label }}
+                    {{ form.office(class_="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.country.label }}
+                    {{ form.country(class_="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.vendor_location.label }}
+                    {{ form.vendor_location(class="form-control") }}
+                </div>
+
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </form>
+            <!-- End Form Section -->
+            
+            <a class="back-link" href="{{ url_for('main.home') }}">Back</a>
+        </div>
+    </div>
+</body>
+</html>
+

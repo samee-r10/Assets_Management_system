@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">User List</h2>
+    <div class="card">
+        <div class="card-body p-4">
+            <table class="table table-striped table-light mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Access</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ 'Super user' if user.username == 'Admin' else 'Normal User' }}</td>
+                        <td>
+                            {% if user.username != 'Admin' %}
+                                {% if current_user.username == 'Admin' %}
+                                    <a href="{{ url_for('main.reset_password', user_id=user.id) }}" class="btn btn-warning btn-sm">Reset Password</a>
+                                {% endif %}
+                                <form method="POST" action="{{ url_for('main.delete_user', user_id=user.id) }}" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            {% else %}
+                                <button class="btn btn-secondary btn-sm" disabled>Cannot Delete</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="mt-4">
+        <a href="{{ url_for('main.home') }}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+# app/routes/main.py
+
+@main.app_errorhandler(403)
+def forbidden_error(error):
+    return render_template('403.html'), 403

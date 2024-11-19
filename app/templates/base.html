@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body class="d-flex flex-column min-vh-100 {% block body_class %}{% endblock %}">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main Navigation">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="max-height: 40px; margin-right: 10px;">
+        <a class="navbar-brand" href="{{ url_for('main.home') }}">Assets Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item {% if request.endpoint == 'main.home' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item {% if request.endpoint == 'auth.login' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4 flex-grow-1">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        <!-- Content Block (e.g., Login Form) -->
+        {% endblock %}
+    </div>
+
+    <footer class="bg-light text-center text-lg-start py-3 mt-auto">
+        <div class="container">
+            <span class="text-muted">© 2024 Inventory Management System. All rights reserved. Made By Sameer Mishra</span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Automatically fade out flash messages after 5 seconds
+        $(document).ready(function(){
+            setTimeout(function(){
+                $(".alert-dismissible").fadeOut("slow", function(){
+                    $(this).alert('close');
+                });
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

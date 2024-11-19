@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block body_class %}login-page{% endblock %}
+{% block content %}
+<div class="login-container" style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative; /* Ensure container is positioned relative for overlay */
+">
+    <img src="{{ url_for('static', filename='solar_wind.jpeg') }}" alt="Background" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 1; /* Make the image less visible */
+        z-index: -1; /* Place the image behind other content */
+    ">
+    <div class="container" style="
+        background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        max-width: 400px;
+        width: 100%;
+    ">
+        <h2 class="text-center">Cleantech Admin Login</h2>
+        <form method="POST" class="login-form">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", placeholder="Username") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="
+                background-color: #007bff;
+                border: none;
+                color: #fff;
+                border-radius: 4px;
+                padding: 10px;
+                cursor: pointer;
+            ">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

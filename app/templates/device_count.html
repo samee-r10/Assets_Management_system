@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Count</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
+</head>
+<body class="device-count-page">
+    <div class="device-count-container">
+        <h2>Device Count Summary</h2>
+        <p>Total Devices: {{ total_count }}</p>
+        
+        <div class="count-section">
+            <h3>Count by Brand</h3>
+            <ul>
+                {% for brand, count in brand_counts.items() %}
+                <li>{{ brand }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="count-section">
+            <h3>Count by Status</h3>
+            <ul>
+                {% for status, count in status_counts.items() %}
+                <li>{{ status }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <a href="{{ url_for('main.home') }}" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+</body>
+</html>

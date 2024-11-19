@@ -1,0 +1,81 @@
+2024-09-20 21:56:29,671 - app - WARNING - Form validation failed: {'asset_tag': ['This field is required.'], 'model': ['This field is required.'], 'fa_code': ['This field is required.'], 'purchase_date': ['This field is required.'], 'current_owner': ['This field is required.'], 'previous_owner': ['This field is required.'], 'warranty_end_date': ['This field is required.'], 'condition_notes': ['This field is required.']}
+2024-09-24 11:01:49,817 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/22
+2024-09-24 12:19:50,571 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/22
+2024-09-24 12:21:21,271 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/22
+2024-09-24 12:23:06,023 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/22
+2024-10-04 14:40:12,423 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/2022
+2024-10-04 15:19:25,997 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/22
+2024-10-04 15:23:51,930 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/22
+2024-10-04 15:25:21,908 - app - ERROR - Error importing CSV file: Unable to parse date: 01/10/24
+2024-10-04 15:29:52,725 - app - ERROR - Error importing CSV file: Unable to parse date: 03/01/2022
+2024-10-04 15:31:33,340 - app - ERROR - Error importing CSV file: Unable to parse date: 29/08/2023
+2024-10-21 10:17:34,346 - app - INFO - Fetched 14 logs
+2024-10-21 10:21:44,234 - app - INFO - Fetched 14 logs
+2024-10-21 14:43:12,727 - app - INFO - Fetched 14 logs
+2024-10-21 14:43:23,624 - app - INFO - Fetched 14 logs
+2024-10-21 14:54:54,513 - app - INFO - Fetched 14 logs
+2024-10-21 14:57:36,357 - app - INFO - Fetched 14 logs
+2024-10-22 12:20:02,616 - app - INFO - Fetched 14 logs
+2024-10-22 12:20:33,722 - app - INFO - Fetched 14 logs
+2024-10-22 23:00:31,429 - app - INFO - Fetched 14 logs
+2024-10-22 23:13:23,680 - app - INFO - Fetched 14 logs
+2024-11-07 10:59:11,790 - app - INFO - Fetched 15 logs
+2024-11-07 11:30:04,974 - app - INFO - Fetched 15 logs
+2024-11-07 11:30:52,254 - app - INFO - User Admin added new item: 1 with serial number: 64G68
+2024-11-07 11:30:58,031 - app - INFO - Fetched 16 logs
+2024-11-07 11:31:21,218 - app - ERROR - Error deleting item: 'user_name' is an invalid keyword argument for Log
+2024-11-07 11:31:28,149 - app - ERROR - Error deleting item: 'user_name' is an invalid keyword argument for Log
+2024-11-07 11:39:17,320 - app - INFO - User Admin deleted item with serial number: 64G68
+2024-11-07 11:39:19,495 - app - INFO - Fetched 15 logs
+2024-11-07 11:39:45,540 - app - INFO - User Admin added new item: 1 with serial number: 64G68
+2024-11-07 11:39:46,976 - app - INFO - Fetched 16 logs
+2024-11-07 11:39:54,542 - app - INFO - Fetched 16 logs
+2024-11-07 11:40:07,129 - app - INFO - Admin updated item: 21 with serial number: 64G68
+2024-11-07 11:40:10,391 - app - INFO - Fetched 17 logs
+2024-11-07 11:41:19,274 - app - INFO - User Admin deleted item with serial number: 64G68
+2024-11-07 11:41:20,943 - app - INFO - Fetched 15 logs
+2024-11-07 11:46:47,433 - app - INFO - Fetched 15 logs
+2024-11-11 09:26:14,251 - app - INFO - Fetched 15 logs
+2024-11-11 09:29:18,916 - app - INFO - User Admin added new item: 1 with serial number: 64G68
+2024-11-11 09:29:20,715 - app - INFO - Fetched 16 logs
+2024-11-11 09:29:28,270 - app - INFO - Admin updated item: 100 with serial number: 64G68
+2024-11-11 09:29:29,412 - app - INFO - Fetched 17 logs
+2024-11-11 09:29:37,602 - app - ERROR - Error deleting item: 'user_name' is an invalid keyword argument for Log
+2024-11-11 09:29:42,601 - app - ERROR - Error deleting item: 'user_name' is an invalid keyword argument for Log
+2024-11-11 09:29:47,615 - app - ERROR - Error deleting all items: 'user_name' is an invalid keyword argument for Log
+2024-11-11 09:29:50,267 - app - INFO - Fetched 17 logs
+2024-11-11 09:29:53,468 - app - ERROR - Error deleting all items: 'user_name' is an invalid keyword argument for Log
+2024-11-11 09:37:48,678 - app - INFO - Fetched 18 logs
+2024-11-11 09:37:59,739 - app - INFO - User Admin deleted all items (1 items)
+2024-11-11 09:38:06,596 - app - INFO - Fetched 19 logs
+2024-11-11 09:42:05,005 - app - INFO - Fetched 15 logs
+2024-11-11 09:44:42,994 - app - INFO - Fetched 15 logs
+2024-11-11 09:45:00,376 - app - INFO - User Admin added new item: 1 with serial number: 64G68
+2024-11-11 09:45:02,711 - app - INFO - Fetched 16 logs
+2024-11-11 09:45:05,628 - app - INFO - Fetched 16 logs
+2024-11-11 09:45:12,898 - app - INFO - Admin updated item: 100 with serial number: 64G68
+2024-11-11 09:45:14,128 - app - INFO - Fetched 17 logs
+2024-11-11 09:45:26,909 - app - INFO - Fetched 18 logs
+2024-11-11 09:55:42,502 - app - INFO - Fetched 19 logs
+2024-11-11 09:55:56,950 - app - INFO - Fetched 20 logs
+2024-11-11 09:57:17,665 - app - INFO - Fetched 20 logs
+2024-11-11 09:57:57,167 - app - INFO - Fetched 21 logs
+2024-11-11 09:58:17,016 - app - INFO - Fetched 21 logs
+2024-11-11 09:58:42,645 - app - INFO - sameer updated item: INMNSM0005 with serial number: ZZJLH4TH537163X
+2024-11-11 09:58:51,549 - app - INFO - Fetched 22 logs
+2024-11-15 17:05:43,090 - app - INFO - Fetched 0 logs
+2024-11-15 17:05:48,231 - app - INFO - Fetched 0 logs
+2024-11-15 17:06:21,347 - app - INFO - User Admin added new item: 22 with serial number: HBC8732
+2024-11-15 17:06:26,778 - app - INFO - Fetched 1 logs
+2024-11-15 17:06:36,563 - app - INFO - Fetched 1 logs
+2024-11-15 17:07:28,681 - app - INFO - Admin updated item: 22 with serial number: HBC8732
+2024-11-15 17:07:35,897 - app - INFO - Fetched 2 logs
+2024-11-15 17:07:49,801 - app - INFO - Fetched 3 logs
+2024-11-15 17:08:25,327 - app - INFO - Fetched 4 logs
+2024-11-15 17:08:34,840 - app - INFO - User Admin deleted all items (346 items)
+2024-11-15 17:08:36,328 - app - INFO - Fetched 350 logs
+2024-11-18 11:00:14,145 - app - INFO - Fetched 351 logs
+2024-11-18 11:00:25,386 - app - INFO - Fetched 352 logs
+2024-11-18 12:24:27,210 - app - INFO - Fetched 352 logs
+2024-11-18 12:41:12,743 - app - INFO - Fetched 353 logs
+2024-11-18 12:49:16,483 - app - INFO - Fetched 353 logs
