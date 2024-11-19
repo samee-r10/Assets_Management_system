@@ -23,21 +23,26 @@
 * Hosted on pythonanywhere.com, ensuring reliability and accessibility.
 
 # Technical Stack
-Frontend: HTML, Bootstrap, CSS
-Backend: Python (Flask)
-Database: MySQL
-Deployment: PythonAnywhere
-How to Use
-Clone the repository.
-Set up the required environment variables in a .env file (MySQL settings, secret key, etc.).
-Install dependencies using pip install -r requirements.txt.
-Run the Flask application locally or deploy on a hosting platform.
-Future Enhancements
-Adding license management for software assets.
-Implementing advanced search and filter capabilities.
-Enhancing UI/UX for better usability.
-Contribution
-Feel free to fork the repository and suggest enhancements!
+* Frontend: HTML, Bootstrap, CSS
+* Backend: Python (Flask)
+* Database: MySQL
+* Deployment: PythonAnywhere
 
-Acknowledgment
-This system was created for Cleantech Solar to streamline their asset management processes.
+# How to Use
+1. Clone the repository.
+2. Set up the required environment variables in a .env file (MySQL settings, secret key, etc.).
+3. Install dependencies using pip install -r requirements.txt.
+4. Run the Flask application locally or deploy on a hosting platform.
+
+# Future Enhancements
+* Adding license management for software assets.
+* Implementing advanced search and filter capabilities.
+* Enhancing UI/UX for better usability.
+
+# Contribution
+* Feel free to fork the repository and suggest enhancements!
+
+# Acknowledgment
+## This system was created for Cleantech Solar to streamline their asset management processes.
+
+* If you any doubt and suggestion in my Inventory System reach me out on "https://www.linkedin.com/in/sameer-mishra-566373271/"
