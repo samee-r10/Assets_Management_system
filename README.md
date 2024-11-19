@@ -47,5 +47,3 @@
 
 * If you any doubt and suggestion in my Inventory System reach me out on "https://www.linkedin.com/in/sameer-mishra-566373271/"
 
-![Capture](https://github.com/user-attachments/assets/fbcbb89b-99dc-4a9d-975b-dd57032ec611)
-
